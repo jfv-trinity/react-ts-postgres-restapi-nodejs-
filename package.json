@@ -1,9 +1,10 @@
 {
-   "name": "typeorm-sample",
+   "name": "restapi",
    "version": "0.0.1",
-   "description": "Awesome project developed with TypeORM.",
+   "description": "Backend API for React-Novel-T",
    "type": "commonjs",
    "devDependencies": {
+      "@types/cors": "^2.8.12",
       "@types/node": "^16.11.10",
       "dotenv": "^16.0.1",
       "nodemon": "^2.0.19",
@@ -12,6 +13,7 @@
    },
    "dependencies": {
       "body-parser": "^1.19.1",
+      "cors": "^2.8.5",
       "express": "^4.17.2",
       "express-validator": "^6.14.2",
       "pg": "^8.4.0",
@@ -19,8 +21,8 @@
       "typeorm": "0.3.7"
    },
    "scripts": {
-      "start": "ts-node src/index.ts",
-      "dev": "nodemon -w *.ts -w .env src/index.ts",
+      "start": "ts-node app/index.ts",
+      "dev": "nodemon -w *.ts -w .env app/index.ts",
       "typeorm": "typeorm-ts-node-commonjs"
    }
 }
