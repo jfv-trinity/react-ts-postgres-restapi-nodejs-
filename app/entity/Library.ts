@@ -20,7 +20,6 @@ export class Library {
   @Column("integer", { name: "book_id" })
   bookId: number;
 
-  @ManyToOne(() => User, (user) => user.libraries)
-  @JoinColumn([{ name: "user_id", referencedColumnName: "id" }])
-  user: User;
+  @Column("integer", { name: "user_id" })
+  userId: number;
 }
