@@ -39,9 +39,12 @@ export class User {
   })
   securityAnswer: string | null;
 
-  @OneToMany(() => Book, (book) => book.author)
-  books: Book[];
+  @Column( { type: "bool", name: "signed_in" })
+  isLoggedIn: boolean;
 
-  @OneToMany(() => Library, (library) => library.user)
-  libraries: Library[];
+  // @OneToMany(() => Book, (book) => book.author)
+  // books: Book[];
+
+  // @OneToMany(() => Library, (library) => library.user)
+  // libraries: Library[];
 }
