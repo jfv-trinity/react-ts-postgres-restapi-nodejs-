@@ -1,5 +1,6 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   Index,
   JoinColumn,
@@ -25,22 +26,31 @@ export class Book {
   })
   bookTitle: string;
 
-  @Column("character varying", { name: "prologue", nullable: true })
-  prologue: string | null;
+  @Column("character varying", { name: "summary", nullable: true })
+  summary: string | null;
 
-  @Column("timestamp with time zone", { name: "publish_date" })
-  publishDate: Date;
+  @Column("character varying", { name: "author_username"})
+  authorUsername: string;
 
-  @Column("timestamp with time zone", { name: "date_updated", nullable: true })
+  @Column({type: "integer", name: "author_id"})
+  authorId: number;
+
+  @Column("character varying", { name: "status"})
+  status: string;
+
+  @Column({ type: "timestamptz",  name: "date_updated", nullable: true , default: () => "CURRENT_TIMESTAMP" })
   dateUpdated: Date | null;
+  
+  @CreateDateColumn({ name: "publish_date" })
+  publishDate: Date;
+  
+  // @ManyToOne(() => User, (user) => user.books)
+  // @JoinColumn([{ name: "author", referencedColumnName: "id" }])
+  // author: User;
 
-  @ManyToOne(() => User, (user) => user.books)
-  @JoinColumn([{ name: "author", referencedColumnName: "id" }])
-  author: User;
+  // @OneToMany(() => Bookchapters, (bookchapters) => bookchapters.book)
+  // bookchapters: Bookchapters[];
 
-  @OneToMany(() => Bookchapters, (bookchapters) => bookchapters.book)
-  bookchapters: Bookchapters[];
-
-  @OneToMany(() => Bookgenres, (bookgenres) => bookgenres.book)
-  bookgenres: Bookgenres[];
+  // @OneToMany(() => Bookgenres, (bookgenres) => bookgenres.book)
+  // bookgenres: Bookgenres[];
 }
