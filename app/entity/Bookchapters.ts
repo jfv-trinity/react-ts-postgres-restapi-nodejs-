@@ -27,8 +27,14 @@ export class Bookchapters {
     length: 50000,
   })
   context: string | null;
+  
+  @Column("integer", { name: "book_id" })
+  bookId: number;
 
-  @ManyToOne(() => Book, (book) => book.bookchapters)
-  @JoinColumn([{ name: "book_id", referencedColumnName: "id" }])
-  book: Book;
+  @Column("integer", { name: "chapter_author" })
+  chapterAuthor: number;
+
+  // @ManyToOne(() => Book, (book) => book.bookchapters)
+  // @JoinColumn([{ name: "book_id", referencedColumnName: "id" }])
+  // book: Book;
 }

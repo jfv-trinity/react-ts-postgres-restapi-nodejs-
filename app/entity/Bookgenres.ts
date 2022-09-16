@@ -71,7 +71,10 @@ export class Bookgenres {
   @Column("boolean", { name: "martial_arts", nullable: true })
   martialArts: boolean | null;
 
-  @ManyToOne(() => Book, (book) => book.bookgenres)
-  @JoinColumn([{ name: "book_id", referencedColumnName: "id" }])
-  book: Book;
+  @Column("integer", { name: "book_id" })
+  bookId: number;
+
+  // @ManyToOne(() => Book, (book) => book.bookgenres)
+  // @JoinColumn([{ name: "book_id", referencedColumnName: "id" }])
+  // book: Book;
 }
