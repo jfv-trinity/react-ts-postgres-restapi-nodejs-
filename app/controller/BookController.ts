@@ -3,6 +3,7 @@ import { Book } from "../entity/Book"
 import { Bookchapters } from "../entity/Bookchapters"
 import { Bookgenres } from "../entity/Bookgenres"
 import { AppDataSource } from "../data-source"
+import { LessThan } from "typeorm"
 
 export class BookController {
 
@@ -29,6 +30,16 @@ export class BookController {
         await this.bookRepository.remove(bookToRemove)
     }
 
-    
+    async findByIdLessThan(request: Request, response: Response, next: NextFunction) {
+        return this.bookRepository.find({ where: { id: LessThan(request.params.id) } })
+    }
+
+      async findByAuthor(request: Request, response: Response, next: NextFunction) {
+        return this.bookRepository.find({ where: { authorId: (request.params.author) } })
+    }
+
+    async update(request: Request, response: Response, next: NextFunction) {
+        return this.bookRepository.update(request.params.id, request.body);
+    };
 
 }

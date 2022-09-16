@@ -12,13 +12,16 @@ export class UserController {
     }
 
     async one(request: Request, response: Response, next: NextFunction) {
-        //return this.userRepository.findOne(request.params.id)
-        return this.userRepository.findOneBy({ id: request.params.id })
+       return this.userRepository.findOneBy({ id: request.params.id })
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
         return this.userRepository.save(request.body)
     }
+
+     async update(request: Request, response: Response, next: NextFunction) {
+        return this.userRepository.update(request.params.id, request.body);
+    };
 
     async remove(request: Request, response: Response, next: NextFunction) {
         const userToRemove = await this.userRepository.findOneBy({ id: request.params.id })
@@ -27,4 +30,11 @@ export class UserController {
         return
     }
 
+    async findByEmail(request: Request, response: Response, next: NextFunction) {
+         return this.userRepository.findOne({ where: { email: request.body.loginEmail }})
+    }
+
+    async checkExistingAccount(request: Request, response: Response, next: NextFunction) {
+         return this.userRepository.findOne({ where: { email: request.body.email }})
+    }
 }
