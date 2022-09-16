@@ -6,6 +6,7 @@ import { Routes } from "./routes"
 import { User } from "./entity/User"
 import { port } from "./config"
 import { validationResult } from "express-validator"
+import cors = require("cors")
 
 function handleError(err, req, res, next) {
     res.status(err.statusCode || 500).send({ message: err.message, statusCode: err.status })
@@ -15,6 +16,7 @@ AppDataSource.initialize().then(async () => {
 
     // create express app
     const app = express()
+    app.use(cors());
     app.use(bodyParser.json())
 
     // register express routes from defined application routes
@@ -39,11 +41,13 @@ AppDataSource.initialize().then(async () => {
 
     app.use(handleError);
 
+
     // setup express app here
     // ...
 
     // start express server
     app.listen(port)
+
 
     // insert new users for test
     // await AppDataSource.manager.save(
