@@ -22,6 +22,7 @@
    },
    "scripts": {
       "start": "ts-node app/index.ts",
+      "postinstall": "tsc",
       "dev": "nodemon -w *.ts -w .env app/index.ts",
       "typeorm": "typeorm-ts-node-commonjs"
    }
